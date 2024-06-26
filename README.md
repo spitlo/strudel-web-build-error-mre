@@ -23,3 +23,11 @@ file: <FOLDER_REDACTED>/strudel-web-build-error/node_modules/@strudel/web/dist/i
     at ModuleLoader.loadEntryModule (file://<FOLDER_REDACTED>/strudel-web-build-error/node_modules/rollup/dist/es/shared/node-entry.js:19123:20)
     at async Promise.all (index 0)
 ```
+
+The error appears to come from this line:
+
+<https://github.com/tidalcycles/strudel/blob/f514cd85b17fb5c16431d04f7ac4e25e3e2ac72c/packages/core/neocyclist.mjs#L23>
+
+```js
+this.worker = new SharedWorker(new URL('./clockworker.js', import.meta.url));
+```
