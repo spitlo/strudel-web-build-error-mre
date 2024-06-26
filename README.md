@@ -31,3 +31,30 @@ The error appears to come from this line:
 ```js
 this.worker = new SharedWorker(new URL('./clockworker.js', import.meta.url));
 ```
+
+If a change it to the way it is recommended in the [Rollup docs](), the build command runs without errors:
+
+```diff
+
+import { logger } from './logger.mjs';
+
++import SharedWorker from './clockworker.js?sharedworker'
+
+export class NeoCyclist {
+  constructor({ onTrigger, onToggle, getTime }) {
+    this.started = false;
+    this.cps = 0.5;
+    this.lastTick = 0; // absolute time when last tick (clock callback) happened
+    this.getTime = getTime; // get absolute time
+    this.time_at_last_tick_message = 0;
+
+    this.num_cycles_at_cps_change = 0;
+    this.onToggle = onToggle;
+    this.latency = 0.1; // fixed trigger time offset
+    this.cycle = 0;
+    this.id = Math.round(Date.now() * Math.random());
+    this.worker_time_dif;
+-   this.worker = new SharedWorker(new URL('./clockworker.js', import.meta.url));
++.  this.worker = new SharedWorker()
+    this.worker.port.start();
+```
