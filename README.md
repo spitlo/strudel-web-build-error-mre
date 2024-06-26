@@ -32,7 +32,7 @@ The error appears to come from this line:
 this.worker = new SharedWorker(new URL('./clockworker.js', import.meta.url));
 ```
 
-If a change it to the way it is recommended in the [Rollup docs](), the build command runs without errors:
+If a change it to the way it is recommended in the [Vite docs](https://vitejs.dev/guide/assets#importing-script-as-a-worker), the build command runs without errors:
 
 ```diff
 
