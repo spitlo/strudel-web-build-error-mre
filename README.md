@@ -55,6 +55,6 @@ export class NeoCyclist {
     this.id = Math.round(Date.now() * Math.random());
     this.worker_time_dif;
 -   this.worker = new SharedWorker(new URL('./clockworker.js', import.meta.url));
-+.  this.worker = new SharedWorker()
++   this.worker = new SharedWorker()
     this.worker.port.start();
 ```
